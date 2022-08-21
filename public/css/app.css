@@ -661,6 +661,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+.bg-red-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
+}
 .p-6 {
   padding: 1.5rem;
 }
@@ -688,15 +692,6 @@ video {
 }
 .pt-8 {
   padding-top: 2rem;
-}
-.pl-3 {
-  padding-left: 0.75rem;
-}
-.pr-3 {
-  padding-right: 0.75rem;
-}
-.pr-10 {
-  padding-right: 2.5rem;
 }
 .text-center {
   text-align: center;

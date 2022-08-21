@@ -14,6 +14,16 @@ class LoginController extends Controller
 
    public function store(Request $request)
    {
-        dd($request);
+        $this->validate( $request, [
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        // attempt for the authenticated users
+        if (!auth()->attempt( $request->only('email', 'password'))) {
+            return back()->with('status', 'There was a problem logging in. Check your email and password or create an account.');
+        }
+
+        return \redirect()->route('dashboard.index');
    }
 }
