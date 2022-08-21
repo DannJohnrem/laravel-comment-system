@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
-
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +18,19 @@ use App\Http\Controllers\Admin\Dashboard\DashboardController;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.post');
+Route::middleware('guest')->group(function () {
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/login','index')->name('login');
+        Route::post('/login', 'store')->name('login.store');
+    });
+
+    Route::controller(RegisterController::class)->group(function () {
+        Route::get('/register', 'index')->name('register');
+        Route::post('/register', 'store')->name('register.store');
+    });
+});
+
+
 
 Route::get('/', function () {
     return view('admin.comment.index');
