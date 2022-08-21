@@ -4,7 +4,7 @@
 @section('content')
     <div class="flex justify-center">
         <div class="w-4/12 p-6 bg-white rounded-lg">
-            <form action="{{ route('register.post') }}" method="POST">
+            <form action="{{ route('register.store') }}" method="POST">
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="sr-only">Name</label>
@@ -50,13 +50,12 @@
                     <label for="password_confirmation" class="sr-only">Confirm Password</label>
                     <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Repeat your password"
                     class="bg-grey-100 border-2 w-full p-4 rounded-lg @error('password_confirmation') border-red-500 @enderror" value="">
+                    @error('password_confirmation')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
-                @error('password_confirmation')
-                    <div class="text-red-500 mt-2 text-sm">
-                        {{ $message }}
-                    </div>
-                @enderror
-
                 <div>
                     <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Register</button>
                 </div>
