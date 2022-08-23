@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use Whoops\Run;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,12 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::middleware('auth')->group( function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+
+    Route::get('/logout', [LogoutController::class, 'store'])->name('logout');
+});
 
 Route::middleware('guest')->group(function () {
     Route::controller(LoginController::class)->group(function () {
@@ -30,7 +37,9 @@ Route::middleware('guest')->group(function () {
     });
 });
 
-
+Route::get('/home', function () {
+    return view('home');
+})->name('home');
 
 Route::get('/', function () {
     return view('admin.comment.index');

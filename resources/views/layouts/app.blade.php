@@ -31,7 +31,7 @@
                         <a href="" class="p-3">Dann Johnrem A. De Guzman</a>
                     </li>
                     <li>
-                        <a href="" class="p-3">Logout</a>
+                        <a href="{{ route('logout') }}" class="p-3">Logout</a>
                     </li>
                 @endauth
                 @guest
