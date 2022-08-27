@@ -22,7 +22,7 @@ Route::middleware('auth')->group( function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-    Route::get('/logout', [LogoutController::class, 'store'])->name('logout');
+    Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 });
 
 Route::middleware('guest')->group(function () {

@@ -31,7 +31,10 @@
                         <a href="" class="p-3">Dann Johnrem A. De Guzman</a>
                     </li>
                     <li>
-                        <a href="{{ route('logout') }}" class="p-3">Logout</a>
+                        <form action="{{ route('logout') }}" method="POST" class="inline p-3">
+                            @csrf
+                            <button type="submit">Logout</button>
+                        </form>
                     </li>
                 @endauth
                 @guest
