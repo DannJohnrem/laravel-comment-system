@@ -18,6 +18,7 @@ use Whoops\Run;
 |
 */
 
+/* A group of routes that are only accessible to authenticated users. */
 Route::middleware('auth')->group( function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
@@ -25,6 +26,7 @@ Route::middleware('auth')->group( function () {
     Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 });
 
+/* A group of routes that are only accessible to guests. */
 Route::middleware('guest')->group(function () {
     Route::controller(LoginController::class)->group(function () {
         Route::get('/login','index')->name('login');
