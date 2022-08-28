@@ -9,11 +9,23 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    /**
+     * It returns the view `auth.register`
+     *
+     * @return The view file 'auth.register'
+     */
     public function index()
     {
         return \view('auth.register');
     }
 
+    /**
+     * We validate the request, create a new user, and then log them in
+     *
+     * @param Request request The request object.
+     *
+     * @return The user is being returned.
+     */
     public function store(Request $request)
     {
 
