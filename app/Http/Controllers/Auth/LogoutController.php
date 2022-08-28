@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class LogoutController extends Controller
 {
+
+   /**
+    * It logs out the user.
+    *
+    * @return A redirect to the home page.
+    */
     public function store()
     {
         auth()->logout();
