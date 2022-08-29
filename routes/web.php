@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Comment\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
@@ -23,6 +24,11 @@ Route::middleware('auth')->group( function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
+    Route::controller(CommentController::class)->group( function () {
+        Route::get('/comment', 'index')->name('comment.index');
+        Route::post('/comment', 'store')->name('comment.store');
+    });
+
     Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 });
 
@@ -42,7 +48,3 @@ Route::middleware('guest')->group(function () {
 Route::get('/home', function () {
     return view('home');
 })->name('home');
-
-Route::get('/', function () {
-    return view('admin.comment.index');
-});
