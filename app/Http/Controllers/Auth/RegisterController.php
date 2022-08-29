@@ -9,11 +9,34 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
+    /**
+     * The `__construct()` function is a special function that is automatically called when a class is
+     * instantiated.
+     *
+     * The `__construct()` function is used to initialize the object's properties upon object creation
+     */
+    public function __contruct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
+     * It returns the view `auth.register`
+     *
+     * @return The view file 'auth.register'
+     */
     public function index()
     {
         return \view('auth.register');
     }
 
+    /**
+     * We validate the request, create a new user, and then log them in
+     *
+     * @param Request request The request object.
+     *
+     * @return The user is being returned.
+     */
     public function store(Request $request)
     {
 

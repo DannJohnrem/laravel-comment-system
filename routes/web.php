@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Comment\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
@@ -18,13 +19,20 @@ use Whoops\Run;
 |
 */
 
+/* A group of routes that are only accessible to authenticated users. */
 Route::middleware('auth')->group( function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
+    Route::controller(CommentController::class)->group( function () {
+        Route::get('/comment', 'index')->name('comment.index');
+        Route::post('/comment', 'store')->name('comment.store');
+    });
+
     Route::post('/logout', [LogoutController::class, 'store'])->name('logout');
 });
 
+/* A group of routes that are only accessible to guests. */
 Route::middleware('guest')->group(function () {
     Route::controller(LoginController::class)->group(function () {
         Route::get('/login','index')->name('login');
@@ -40,7 +48,3 @@ Route::middleware('guest')->group(function () {
 Route::get('/home', function () {
     return view('home');
 })->name('home');
-
-Route::get('/', function () {
-    return view('admin.comment.index');
-});
