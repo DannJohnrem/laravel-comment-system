@@ -17,7 +17,7 @@
                     <a href="{{ route('dashboard.index') }}" class="p-3">Dashboard</a>
                 </li>
                 <li>
-                    <a href="" class="p-3">Comment</a>
+                    <a href="{{ route('comment.index') }}" class="p-3">Comment</a>
                 </li>
             </ul>
             <ul class="flex items-center">
@@ -28,7 +28,7 @@
             <ul class="flex items-center">
                 @auth
                     <li>
-                        <a href="" class="p-3">Dann Johnrem A. De Guzman</a>
+                        <a href="" class="p-3"> {{ auth()->user()->name }}</a>
                     </li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST" class="inline p-3">
