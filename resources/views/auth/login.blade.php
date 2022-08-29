@@ -14,7 +14,7 @@
                 <div class="mb-4">
                     <label for="email" class="sr-only">Email</label>
                     <input type="email" name="email" id="email" placeholder="Your email"
-                    class="bg-grey-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror" value="{{ old('email') }}">
+                    class="bg-grey-100 border-2 w-full p-4 rounded-lg @error('email') border-red-500 @enderror" value="{{ old('email') }}" autofocus>
                     @error('email')
                         <div class="mt-2 text-sm text-red-500">
                             {{ $message }}
@@ -30,6 +30,12 @@
                             {{ $message }}
                         </div>
                     @enderror
+                </div>
+                <div class="mb-4">
+                    <div class="flex item-center">
+                        <input type="checkbox" name="remember" id="remember" class="mr-2">
+                        <label for="remember">Remember me</label>
+                    </div>
                 </div>
                 <div>
                     <button type="submit" class="w-full px-4 py-3 font-medium text-white bg-blue-500 rounded">Login</button>
