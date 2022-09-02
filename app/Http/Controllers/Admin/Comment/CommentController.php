@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Comment;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCommentRequest;
 
 class CommentController extends Controller
 {
@@ -31,16 +32,10 @@ class CommentController extends Controller
         return view('admin.comment.index');
     }
 
-    public function store(Request $request)
+    public function store(StoreCommentRequest $request)
     {
-        $this->validate($request, [
-            'body' => 'required',
-        ]);
+        $request->user()->comments()->create($request->safe()->only('body'));
 
-        Comment::create([
-            'user_id' => auth()->user()->id,
-            'body' => $request->body
-        ]);
-
+        return back();
     }
 }
