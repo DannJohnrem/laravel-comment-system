@@ -9,14 +9,14 @@
                     <label for="body" class="sr-only">Body</label>
                     <textarea name="body" id="body" cols="30" rows="4" class="bg-gray-100 border-2 p-4 w-full rounded-lg @error('body') border-red-500 @enderror" placeholder="Write a comment..."></textarea>
                     @error('body')
-                        <div class="text-red-500 mt-2 text-sm">
+                        <div class="mt-2 text-sm text-red-500">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
 
                 <div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Comment</button>
+                    <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded">Comment</button>
                 </div>
             </form>
         </div>
