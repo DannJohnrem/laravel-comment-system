@@ -29,9 +29,19 @@ class CommentController extends Controller
      */
     public function index()
     {
-        return view('admin.comment.index');
+        $comments = Comment::paginate(5);
+
+        return view('admin.comment.index', compact('comments'));
     }
 
+    /**
+     * Create a new comment with the body from the request, and associate it with the authenticated
+     * user.
+     *
+     * @param StoreCommentRequest request The incoming HTTP request.
+     *
+     * @return The user's comments.
+     */
     public function store(StoreCommentRequest $request)
     {
         $request->user()->comments()->create($request->safe()->only('body'));
