@@ -3,7 +3,7 @@
 @section('content')
     <div class="flex justify-center">
         <div class="w-8/12 p-6 bg-white rounded-lg">
-            <form action="{{ route('comment.store') }}" method="POST">
+            <form action="{{ route('comment.store') }}" method="POST" class="mb-4">
                 @csrf
                 <div class="mb-4">
                     <label for="body" class="sr-only">Body</label>
@@ -19,6 +19,20 @@
                     <button type="submit" class="px-4 py-2 font-medium text-white bg-blue-500 rounded">Comment</button>
                 </div>
             </form>
+
+            @forelse ($comments as $comment)
+                <div class="mb-4">
+                    <a href="" class="font-bold">{{ $comment->user->name }}</a>
+                    <span class="text-grey-600 text-small">{{ $comment->created_at->diffForHumans() }}</span>
+
+                    <p class="mb-2">{{ $comment->body }}</p>
+                </div>
+            @empty
+                <p>You have no comment yet.</p>
+            @endforelse
+
+            {{ $comments->links('pagination::tailwind') }}
+
         </div>
     </div>
 @endsection
