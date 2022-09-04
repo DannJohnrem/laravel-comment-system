@@ -47,6 +47,6 @@ Route::middleware('guest')->group(function () {
 
 });
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 })->name('home');
