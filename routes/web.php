@@ -34,6 +34,7 @@ Route::controller(CommentController::class)->group( function () {
 });
 
 Route::post('/comment/{comment}/likes', [PostLikeController::class, 'store'])->name('comment.like');
+Route::delete('/comment/{comment}/unlikes', [PostLikeController::class, 'destroy'])->name('comment.unlike');
 
 /* A group of routes that are only accessible to guests. */
 Route::middleware('guest')->group(function () {
