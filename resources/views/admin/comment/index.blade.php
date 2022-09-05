@@ -26,6 +26,19 @@
                     <span class="text-grey-600 text-small">{{ $comment->created_at->diffForHumans() }}</span>
 
                     <p class="mb-2">{{ $comment->body }}</p>
+
+                    <div class="flex item-center">
+                        <form action="{{ route('comment.like', $comment->id) }}" method="POST" class="mr-1">
+                            @csrf
+                            <button type="submit" class="text-blue-500 mr-2">Like</button>
+                        </form>
+                        <form action="" method="POST" class="mr-1">
+                            @csrf
+                            <button type="submit" class="text-blue-500 mr-2">Unlike</button>
+                        </form>
+
+                        <span>{{ $comment->likes->count() }} {{ Str::plural('Like', $comment->likes->count()) }}</span>
+                    </div>
                 </div>
             @empty
                 <p>You have no comment yet.</p>
