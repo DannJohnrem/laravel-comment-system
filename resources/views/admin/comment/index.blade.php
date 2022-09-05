@@ -26,6 +26,24 @@
                     <span class="text-grey-600 text-small">{{ $comment->created_at->diffForHumans() }}</span>
 
                     <p class="mb-2">{{ $comment->body }}</p>
+
+                    <div class="flex item-center">
+                        @if (!$comment->likedBy(auth()->user()))
+                            <form action="{{ route('comment.like', $comment) }}" method="POST" class="mr-1">
+                                @csrf
+                                <button type="submit" class="text-blue-500 mr-2">Like</button>
+                            </form>
+                        @else
+                            <form action="{{ route('comment.unlike', $comment) }}" method="POST" class="mr-1">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-blue-500 mr-2">Unlike</button>
+                            </form>
+                        @endif
+
+                        <span>{{ $comment->likes->count() }} {{ Str::plural('Like', $comment->likes->count()) }}</span>
+
+                    </div>
                 </div>
             @empty
                 <p>You have no comment yet.</p>

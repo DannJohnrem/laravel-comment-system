@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Comment\CommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\Likes\PostLikeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use Whoops\Run;
@@ -32,6 +33,9 @@ Route::controller(CommentController::class)->group( function () {
     Route::post('/comment', 'store')->name('comment.store');
 });
 
+Route::post('/comment/{comment}/likes', [PostLikeController::class, 'store'])->name('comment.like');
+Route::delete('/comment/{comment}/unlikes', [PostLikeController::class, 'destroy'])->name('comment.unlike');
+
 /* A group of routes that are only accessible to guests. */
 Route::middleware('guest')->group(function () {
     Route::controller(LoginController::class)->group(function () {
@@ -43,7 +47,6 @@ Route::middleware('guest')->group(function () {
         Route::get('/register', 'index')->name('register');
         Route::post('/register', 'store')->name('register.store');
     });
-
 
 });
 
