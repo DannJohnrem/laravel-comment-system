@@ -27,7 +27,18 @@
 
                     <p class="mb-2">{{ $comment->body }}</p>
 
+                    @if ( $comment->ownedBy(auth()->user()))
+                        <div>
+                            <form action="{{ route('comment.destroy', $comment) }}" method="POST" class="mr-1">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-blue-500 mr-2">Delete</button>
+                            </form>
+                        </div>
+                    @endif
+
                     <div class="flex item-center">
+                    @auth
                         @if (!$comment->likedBy(auth()->user()))
                             <form action="{{ route('comment.like', $comment) }}" method="POST" class="mr-1">
                                 @csrf
@@ -40,7 +51,7 @@
                                 <button type="submit" class="text-blue-500 mr-2">Unlike</button>
                             </form>
                         @endif
-
+                    @endauth
                         <span>{{ $comment->likes->count() }} {{ Str::plural('Like', $comment->likes->count()) }}</span>
 
                     </div>
