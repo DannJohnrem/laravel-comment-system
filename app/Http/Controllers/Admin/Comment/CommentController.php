@@ -29,7 +29,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::paginate(5);
+        $comments = Comment::latest()->with(['likes', 'user'])->paginate(20);
 
         return view('admin.comment.index', compact('comments'));
     }
@@ -45,6 +45,13 @@ class CommentController extends Controller
     public function store(StoreCommentRequest $request)
     {
         $request->user()->comments()->create($request->safe()->only('body'));
+
+        return back();
+    }
+
+    public function destroy(Comment $comment)
+    {
+        $comment->delete();
 
         return back();
     }
