@@ -31,10 +31,12 @@ Route::middleware('auth')->group( function () {
 Route::controller(CommentController::class)->group( function () {
     Route::get('/comment', 'index')->name('comment.index');
     Route::post('/comment', 'store')->name('comment.store');
+    Route::delete('/comment/{comment}', 'destroy')->name('comment.destroy');
 });
 
 Route::post('/comment/{comment}/likes', [PostLikeController::class, 'store'])->name('comment.like');
 Route::delete('/comment/{comment}/unlikes', [PostLikeController::class, 'destroy'])->name('comment.unlike');
+
 
 /* A group of routes that are only accessible to guests. */
 Route::middleware('guest')->group(function () {
