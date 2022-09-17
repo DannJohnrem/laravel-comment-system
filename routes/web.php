@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Comment\CommentController;
+use App\Http\Controllers\Admin\Comment\UserCommentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
@@ -36,6 +37,8 @@ Route::controller(CommentController::class)->group( function () {
 
 Route::post('/comment/{comment}/likes', [PostLikeController::class, 'store'])->name('comment.like');
 Route::delete('/comment/{comment}/unlikes', [PostLikeController::class, 'destroy'])->name('comment.unlike');
+
+Route::get('users/{user}', [UserCommentController::class, 'index'])->name('user.view.comments');
 
 
 /* A group of routes that are only accessible to guests. */
