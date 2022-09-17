@@ -31,7 +31,7 @@ class CommentController extends Controller
     {
         $comments = Comment::latest()->with(['likes', 'user'])->paginate(20);
 
-        return view('admin.comment.index', compact('comments'));
+        return view('comment.index', compact('comments'));
     }
 
     /**
