@@ -31,6 +31,7 @@ Route::middleware('auth')->group( function () {
 
 Route::controller(CommentController::class)->group( function () {
     Route::get('/comment', 'index')->name('comment.index');
+    Route::get('/comemnt/{comment}', 'show')->name('comment.show');
     Route::post('/comment', 'store')->name('comment.store');
     Route::delete('/comment/{comment}', 'destroy')->name('comment.destroy');
 });
