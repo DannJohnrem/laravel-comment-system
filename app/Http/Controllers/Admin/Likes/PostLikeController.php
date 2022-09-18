@@ -28,13 +28,9 @@ class PostLikeController extends Controller
      */
     public function store(Comment $comment, Request $request)
     {
-
-        dd($comment->likedBy($request->user()));
-
         if ($comment->likedBy($request->user())) {
             return response(null, 409);
         }
-        // dd();
 
         $comment->likes()->create([
             'user_id' => $request->user()->id,
