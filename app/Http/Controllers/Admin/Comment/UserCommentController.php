@@ -10,6 +10,8 @@ class UserCommentController extends Controller
 {
     public function index(User $user)
     {
-       dd($user);
+        $comments = $user->comments()->with(['user', 'likes'])->paginate(20);
+
+        return view('users.comments.index', compact('user', 'comments'));
     }
 }
