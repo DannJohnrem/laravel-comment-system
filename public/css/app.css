@@ -583,6 +583,9 @@ video {
 .-ml-px {
   margin-left: -1px;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
 .inline {
   display: inline;
 }
