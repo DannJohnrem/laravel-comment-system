@@ -10,6 +10,6 @@ class UserCommentController extends Controller
 {
     public function index(User $user)
     {
-       dd($user);
+       return view('users.comments.index');
     }
 }
