@@ -34,6 +34,11 @@ class CommentController extends Controller
         return view('comment.index', compact('comments'));
     }
 
+    public function show(Comment $comment)
+    {
+        return view('comment.show', compact('comment'));
+    }
+
     /**
      * Create a new comment with the body from the request, and associate it with the authenticated
      * user.
