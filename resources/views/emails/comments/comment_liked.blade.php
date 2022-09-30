@@ -1,0 +1,12 @@
+@component('mail::message')
+# Introduction
+
+{{ $liker->name }} liked one of your post.
+
+@component('mail::button', ['url' => route('user.view.comments', $post)])
+    View Post
+@endcomponent
+
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent

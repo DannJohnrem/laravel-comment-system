@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Likes;
 
-use App\Http\Controllers\Controller;
 use App\Models\Comment;
+use App\Mail\CommentLiked;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class PostLikeController extends Controller
 {
@@ -35,6 +37,8 @@ class PostLikeController extends Controller
         $comment->likes()->create([
             'user_id' => $request->user()->id,
         ]);
+
+        Mail::to($comment->user)->send(new CommentLiked(auth()->user(), $comment));
 
         return back();
     }
