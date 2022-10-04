@@ -17,9 +17,9 @@ class CommentController extends Controller
      * that checks to see if the user is logged in. If the user is not logged in, they will be
      * redirected to the login page
      */
-    public function __contruct()
+    public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth'])->only(['store', 'destroy']);
     }
 
     /**
@@ -34,14 +34,21 @@ class CommentController extends Controller
         return view('comment.index', compact('comments'));
     }
 
+    /**
+     * The show function takes a Comment object as an argument and returns a view called comment.show
+     * with the Comment object passed to it
+     *
+     * @param Comment comment The model instance passed to the route
+     *
+     * @return The view comment.show with the comment variable.
+     */
     public function show(Comment $comment)
     {
         return view('comment.show', compact('comment'));
     }
 
     /**
-     * Create a new comment with the body from the request, and associate it with the authenticated
-     * user.
+     * The store function creates a new comment and the destroy function deletes a comment
      *
      * @param StoreCommentRequest request The incoming HTTP request.
      *
@@ -54,6 +61,13 @@ class CommentController extends Controller
         return back();
     }
 
+    /**
+     * The destroy function is used to delete a comment
+     *
+     * @param Comment comment The comment model instance.
+     *
+     * @return The user is being returned.
+     */
     public function destroy(Comment $comment)
     {
         $this->authorize('delete', $comment);

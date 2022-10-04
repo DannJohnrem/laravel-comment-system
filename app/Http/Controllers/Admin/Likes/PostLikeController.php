@@ -34,11 +34,11 @@ class PostLikeController extends Controller
             return response(null, 409);
         }
 
-        $comment->likes()->create([
-            'user_id' => $request->user()->id,
-        ]);
+        $comment->likes()->create(['user_id' => $request->user()->id]);
 
-        Mail::to($comment->user)->send(new CommentLiked(auth()->user(), $comment));
+        if (!$comment->likes()->onlyTrashed()->where('user_id', $request->user()->id)->count()) {
+            Mail::to($comment->user)->send(new CommentLiked(auth()->user(), $comment));
+        }
 
         return back();
     }

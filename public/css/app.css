@@ -577,14 +577,14 @@ video {
 .mr-1 {
   margin-right: 0.25rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
 .-ml-px {
   margin-left: -1px;
-}
-.mb-1 {
-  margin-bottom: 0.25rem;
 }
 .inline {
   display: inline;

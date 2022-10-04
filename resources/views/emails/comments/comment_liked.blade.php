@@ -3,7 +3,7 @@
 
 {{ $liker->name }} liked one of your post.
 
-@component('mail::button', ['url' => route('user.view.comments', $post)])
+@component('mail::button', ['url' => route('comment.show', $post)])
     View Post
 @endcomponent
 
