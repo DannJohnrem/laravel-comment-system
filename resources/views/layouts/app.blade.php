@@ -22,7 +22,7 @@
             </ul>
             <ul class="flex items-center">
                 <li>
-                    <img src="{{ asset('images/updated-logo.png') }}" alt="Comment System Logo" width="50" height="50">
+                    <img src="{{ asset('/assets/images/glamware_logo.png') }}" alt="Comment System Logo" width="50" height="50">
                 </li>
             </ul>
             <ul class="flex items-center">
@@ -47,6 +47,14 @@
                 @endguest
             </ul>
         </nav>
-        @yield('content')
+
+        <main class="container px-4 py-4 mx-auto">
+            @yield('content')
+        </main>
+
+
+        <!-- Scripts -->
+        @stack('scripts')
+
     </body>
 </html>
